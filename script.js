@@ -4,7 +4,6 @@ let display = $("#time");
 
 
 
-
 function time() {
     timeDisplay = setInterval(function(){
          
@@ -27,9 +26,24 @@ for(let i = 0; i < hours.length; i++){
     time.text(hours[i]);
     let input = $('<input type="text" class="col-8">')
     let saveBtn = $('<button class="saveBtn col-2"><i class="fa-solid fa-floppy-disk"></i></button>');
+    input.attr('id', i);
+    console.log()
     row.append(time, input, saveBtn);
     container.append(row);
+
+    saveBtn.on("click", function(event){
+        event.preventDefault();
+        let inputId = {
+            input: input.val(),
+            location: input.attr('id'),
+        };
+        let storeInputs = JSON.parse(localStorage.getItem('stored-inputs'))||[];
+        storeInputs.push(inputId);
+        localStorage.setItem('stored-inputs', JSON.stringify(storeInputs));
+    })
     
 }
 
 })
+
+
