@@ -41,9 +41,18 @@ for(let i = 0; i < hours.length; i++){
         storeInputs.push(inputId);
         localStorage.setItem('stored-inputs', JSON.stringify(storeInputs));
     })
+
+    let storInp = JSON.parse(localStorage.getItem('stored-inputs'))||[];
+for(let i = 0; i < storInp.length; i++){
+    if(storInp[i].location == input.attr('id')){
+        input.val(storInp[i].input);
+    }
+    
+}
     
 }
 
 })
+
 
 
