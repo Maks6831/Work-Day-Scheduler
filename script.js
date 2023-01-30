@@ -40,13 +40,13 @@ for(let i = 0; i < hours.length; i++){
     console.log()
     row.append(time, input, saveBtn);
     container.append(row);
-     if(input.attr('id') > 13){
+     if(input.attr('id') > moment().hour()){
         input.addClass('future');
         console.log('hello');
     } else {
         input.addClass('past');
     } 
-    if(input.attr('id') == 13){
+    if(input.attr('id') == moment().hour()){
         input.addClass('present');
     }
     saveBtn.on("click", function(event){
