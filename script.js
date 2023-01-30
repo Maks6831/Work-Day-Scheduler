@@ -2,6 +2,9 @@ $(function(){
     let timeDisplay = null;
 let display = $("#time");
 console.log(moment().hour())
+if(moment().hour() == 0){
+    localStorage.removeItem('stored-inputs');
+}
 
 
 
@@ -22,12 +25,11 @@ time();
 
 let container = $(".container")
 let hours = ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM'];
-console.log('Hello2')
+
 let hourTime = 9
 
 
 for(let i = 0; i < hours.length; i++){
-    console.log('Hello3')
     let row = $('<div class="row"></div>');
     let time = $('<div class="hour col-2"></div>')
     time.text(hours[i]);
@@ -38,16 +40,15 @@ for(let i = 0; i < hours.length; i++){
     console.log()
     row.append(time, input, saveBtn);
     container.append(row);
-    if(input.attr('id') > moment().hour()){
+     if(input.attr('id') > 13){
         input.addClass('future');
         console.log('hello');
     } else {
         input.addClass('past');
     } 
-    if(input.attr('id') == moment().hour()){
+    if(input.attr('id') == 13){
         input.addClass('present');
     }
-
     saveBtn.on("click", function(event){
         event.preventDefault();
         let inputId = {
