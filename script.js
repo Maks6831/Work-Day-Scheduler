@@ -1,6 +1,9 @@
 $(function(){
     let timeDisplay = null;
 let display = $("#time");
+console.log(moment().hour())
+
+
 
 
 
@@ -18,6 +21,8 @@ time();
 let container = $(".container")
 let hours = ['9AM', '10AM', '11AM', '12PM', '1PM', '2PM', '3PM', '4PM', '5PM'];
 console.log('Hello2')
+let hourTime = 9
+
 
 for(let i = 0; i < hours.length; i++){
     console.log('Hello3')
@@ -26,10 +31,20 @@ for(let i = 0; i < hours.length; i++){
     time.text(hours[i]);
     let input = $('<input type="text" class="col-8">')
     let saveBtn = $('<button class="saveBtn col-2"><i class="fa-solid fa-floppy-disk"></i></button>');
-    input.attr('id', i);
+    input.attr('id', hourTime);
+    hourTime++;
     console.log()
     row.append(time, input, saveBtn);
     container.append(row);
+    if(input.attr('id') > moment().hour()){
+        input.addClass('future');
+        console.log('hello');
+    } else {
+        input.addClass('past');
+    } 
+    if(input.attr('id') == moment().hour()){
+        input.addClass('present');
+    }
 
     saveBtn.on("click", function(event){
         event.preventDefault();
@@ -47,9 +62,10 @@ for(let i = 0; i < storInp.length; i++){
     if(storInp[i].location == input.attr('id')){
         input.val(storInp[i].input);
     }
-    
 }
-    
+
+
+
 }
 
 })
