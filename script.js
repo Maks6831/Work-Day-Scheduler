@@ -2,19 +2,18 @@ $(function(){
     let timeDisplay = null;
 let display = $("#time");
 console.log(moment().hour())
-if(moment().hour() == 0){
-    localStorage.removeItem('stored-inputs');
-}
-
-
-
-
-
 
 
 function time() {
     timeDisplay = setInterval(function(){
-         
+        colorRows();
+        var mmt = moment();
+        var mmtMidnight = mmt.clone().startOf('day');
+        var diffMinutes = mmt.diff(mmtMidnight, 'minutes');
+        if (diffMinutes == 0){
+            console.log('midnight: events are cleared!')
+            localStorage.removeItem('stored-inputs');
+        }
         let curDatTime = moment().format("h:mm:ss a dddd Do MMMM YYYY");
         display.text(curDatTime);
         return curDatTime;
@@ -40,7 +39,7 @@ for(let i = 0; i < hours.length; i++){
     console.log()
     row.append(time, input, saveBtn);
     container.append(row);
-     if(input.attr('id') > moment().hour()){
+     /*if(input.attr('id') > moment().hour()){
         input.addClass('future');
         console.log('hello');
     } else {
@@ -48,7 +47,7 @@ for(let i = 0; i < hours.length; i++){
     } 
     if(input.attr('id') == moment().hour()){
         input.addClass('present');
-    }
+    }*/
     saveBtn.on("click", function(event){
         event.preventDefault();
         let inputId = {
@@ -68,9 +67,25 @@ for(let i = 0; i < storInp.length; i++){
 }
 
 
-
 }
 
+function colorRows(){
+    let currentTime = moment().hour();
+    for(let blockTime = 9; blockTime < 18; blockTime++){
+        let blockId = '#' + blockTime
+    if(blockTime < currentTime){
+        $(blockId).addClass('past');
+    } else if(blockTime == currentTime){
+        $(blockId).removeClass('past');
+        $(blockId).addClass('present');
+    } else {
+        $(blockId).removeClass('past');
+        $(blockId).removeClass('present');
+        $(blockId).addClass('future');
+    }
+
+    }
+    }
 })
 
 
