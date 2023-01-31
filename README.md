@@ -9,6 +9,9 @@ The purpose of this project was to create a Day Schedule app which saves the inp
 
 ### Screenshot
 
+![workday schedule](https://user-images.githubusercontent.com/118021969/215832525-fe8520a2-5805-43d6-8ad7-09c0a8f24b25.png)
+
+
 
 ### Link to Deployed Webpage
 
