@@ -14,6 +14,7 @@ The purpose of this project was to create a Day Schedule app which saves the inp
 
 
 ### Link to Deployed Webpage
+https://maks6831.github.io/Work-Day-Scheduler/
 
 
 
